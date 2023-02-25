@@ -1,17 +1,30 @@
 <template>
-	<VirtualScroll />
+	<div class='app'>
+		<VirtualScroll/>
+	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang='ts'>
+import {defineComponent} from 'vue';
 import VirtualScroll from "@/components/VirtualScroll.vue";
+
 export default defineComponent({
-  name: 'App',
-  components: {
-	  VirtualScroll
-  }
+	name: 'App',
+	components: {
+		VirtualScroll
+	}
 });
 </script>
 
-<style lang="scss">
+<style lang='scss'>
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+.app {
+
+}
 </style>

@@ -11,6 +11,7 @@
 				<div class='date'>{{ date }}</div>
 			</div>
 		</div>
+
 		<div class='image'>
 			<img :src='image'
 			     alt='none'>
@@ -19,6 +20,9 @@
 </template>
 
 <script setup>
+defineExpose({
+
+})
 
 const props = defineProps({
 	list: {
@@ -42,13 +46,22 @@ const { date, from, id, image, reads, title } = props.list
 
 	.text {
 		width: 80%;
-
 		.top {
 
 		}
 
 		.bottom {
-			display: flex;
+			> div {
+				float: left;
+				padding: 0 10px;
+			}
+		}
+	}
+
+	.image {
+		img {
+			width: 50px;
+
 		}
 	}
 }

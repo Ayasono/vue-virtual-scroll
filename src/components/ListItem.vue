@@ -1,5 +1,7 @@
+<!--
 <template>
-	<div class='item'>
+	<div class='item'
+	     ref='ref'>
 		<div class='text'>
 			<div class='top'>
 				<div class='title'>{{ title }}</div>
@@ -19,26 +21,34 @@
 	</div>
 </template>
 
-<script setup>
-defineExpose({
-
-})
-
-const props = defineProps({
+<script lang='ts'>
+import { reactive, toRefs } from 'vue'
+interface Li {
 	list: {
-		type: Object
+		image: String,
+
 	}
-})
+}
+export default {
+	props: {
+		list: {
+			type: Object
+		}
+	},
+	setup (props: Li, context: any) {
 
-const { date, from, id, image, reads, title } = props.list
-
+		return {
+			...toRefs(reactive(props.list))
+		}
+	},
+}
 </script>
 
 <style scoped
        lang='scss'>
 .item {
 	width: 100%;
-	height: 12vh;
+	height: 100px;
 	padding: 15px 10px;
 	border: 1px solid red;
 
@@ -46,6 +56,7 @@ const { date, from, id, image, reads, title } = props.list
 
 	.text {
 		width: 80%;
+
 		.top {
 
 		}
@@ -66,3 +77,4 @@ const { date, from, id, image, reads, title } = props.list
 	}
 }
 </style>
+-->

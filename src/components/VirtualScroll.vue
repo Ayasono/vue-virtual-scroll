@@ -1,9 +1,10 @@
+<!--
 <template>
 	<div class='container'>
-		<ListItem v-for='item in news.list'
+		<ListItem v-for='item in news.list.slice()'
 		          :list='item'
 		          :key='item.id'
-		          :ref='getItem'
+		          ref='Items'
 		/>
 	</div>
 </template>
@@ -13,17 +14,14 @@ import getNews from '@/api/mock'
 import ListItem from '@/components/ListItem.vue'
 import { onMounted, ref } from 'vue'
 
-const news = getNews(100)
-console.log(news)
+const news = getNews(1000)
+console.log(news.list)
 
-const items = []
-function getItem (el) {
-	items.push(el)
-}
-console.log(items)
+// virtual list -&#45;&#45; height: 80px
+let min = ref(2)
 
-onMounted(() => {
-
+window.addEventListener('scroll', e => {
+	let scrollTop = e.target
 })
 
 </script>
@@ -34,3 +32,4 @@ onMounted(() => {
 	height: inherit;
 }
 </style>
+-->

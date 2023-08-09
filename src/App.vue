@@ -1,37 +1,3 @@
-<!--
-<template>
-	<div class='app'>
-		<VirtualScroll/>
-	</div>
-</template>
-
-<script lang='ts'>
-import {defineComponent} from 'vue';
-import VirtualScroll from "@/components/VirtualScroll.vue";
-
-export default defineComponent({
-	name: 'App',
-	components: {
-		VirtualScroll
-	},
-	setup() {
-	}
-});
-</script>
-
-<style lang='scss'>
-* {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-	box-sizing: border-box;
-}
-
-.app {
-
-}
-</style>
--->
 <template>
 	<h3>vit list</h3>
 	<div class='list'
@@ -45,7 +11,7 @@ export default defineComponent({
 				:key='index'
 				:style='{ top: `${40 * item.label}px` }'
 			>
-				{{ item.value }}:{{ item.label }}
+				{{ item.value }} || index: {{ item.label }}
 			</div>
 		</div>
 	</div>
@@ -62,6 +28,8 @@ export default {
 			// 当滚动距离大于2条数据的高度时开始动态计算
 			if (scrollTop > 2 * 40) {
 				min.value = Math.ceil(scrollTop / 40)
+				console.log(scrollTop + 'px')
+				console.log(min.value)
 			} else {
 				min.value = 2
 			}
@@ -70,7 +38,7 @@ export default {
 		return {
 			// 构造十万条数据
 			options: ref(
-				Array.from({length: 1000000}).map((_, idx) => ({
+				Array.from({length: 100000}).map((_, idx) => ({
 					value: `Option ${idx + 1}`,
 					label: `${idx}`
 				}))
@@ -84,19 +52,26 @@ export default {
 
 <style lang='scss'
        scoped>
+
+* {
+	box-sizing : border-box;
+	padding : 0;
+	margin : 0;
+}
+
 .list {
-	margin: 10px auto;
-	width: 300px;
-	height: 200px;
-	overflow: auto;
-	position: relative;
+	margin   : 10px auto;
+	width    : 300px;
+	height   : 200px;
+	overflow : auto;
+	position : relative;
 
 	.item {
-		border: 1px solid #be1e3e;
-		height: 40px;
-		line-height: 40px;
-		position: absolute;
-		width: 100%;
+		border      : 1px solid #be1e3e;
+		height      : 40px;
+		line-height : 40px;
+		position    : absolute;
+		width       : 100%;
 	}
 }
 </style>
